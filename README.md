@@ -1,7 +1,22 @@
-# Hand_control
-
-Hand_control base on python.
-
-python < 3.9
-
-May download pytorch from offical website.
+Hand_control 项目：
+手势交互项目应用demo。由opencv提供的视频操作功能，核心模块手部检测模块为mediapipe提供的手部检测功能，从此模块能的到手部21点位置信息。编写对此21点信息进行处理的逻辑在component/HandtrackingModule.py里，通过点之间形成的角度、距离判断此时手势，对应手势将触发不一样功能。
+主要功能：
+开发语言：python3.8.8（暂时发现python3.9有兼容问题无法使用）
+场景：目前场景为桌面使用，摄像头视角为大致显示屏幕高度上方往下照射
+1、出现主页面后可用鼠标选择区域（四个点）进行梯形矫正。
+2、实现单手点击，食指和中指贴紧为类似鼠标点击模式，此时可以用食指中指框选所需区域进行文字识别，此文字识别使用easyocr模块，目前只下载中文和英文文字识别
+3、实现双手配合选中区域，两只手同时食指和中指贴紧时，以此时两指贴紧位置为对角点的中心区域进行物体识别，物体识别为yolov5官方提供的预训练模型。
+ 
+项目使用：
+1.	下载requirement.txt文件（pip install requirement.txt）   
+2.	可能需要额外从官网下载pytorch
+3.	下载yolov5预训练模型，放入YOLO_OpenVINO根文件夹，在detect.py文件里面get_parser()功能里将—weights中 default更改对应名字，或每次调用detect时注明。
+4.	确定摄像头连接成功，若有多摄像头，则在Handmouse.py里面更改第41行,cv2.VideoCapture(#摄像头编号，同时也支持输入视频路径读取视频)
+5.	根目录运行main.py文件
+ 
+项目后续：
+1.	建立本地的手部识别模型，参考[手21关键点回归项目]，去除Mediapipe调用
+2.	建立本地的文字识别模型，并使用外星人摄像头拍摄照片进行训练。去除easyocr调用
+3.	调整物体识别模型所识别物体，去契合不同的项目应用（如识别桌面是否出现手机达到监控考试效果）
+4.	使用语言更改为C/C++模型。
+5.	梯形校正调用TGL_keystone_build中接口提高矫正速度。
