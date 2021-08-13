@@ -1,4 +1,5 @@
 Hand_control 项目：
+
 手势交互项目应用demo。由opencv提供的视频操作功能，核心模块手部检测模块为mediapipe提供的手部检测功能，从此模块能的到手部21点位置信息。编写对此21点信息进行处理的逻辑在component/HandtrackingModule.py里，通过点之间形成的角度、距离判断此时手势，对应手势将触发不一样功能。
 主要功能：
 开发语言：python3.8.8（暂时发现python3.9有兼容问题无法使用）
